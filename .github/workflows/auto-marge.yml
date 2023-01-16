@@ -17,3 +17,10 @@ jobs:
           source_ref: ${{ github.ref }}
           target_branch: 'test'
           commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
+  open-pr:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    if: failure()
+    steps:
+      - uses: peter-evans/create-pull-request@v4
+          
